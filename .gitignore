@@ -1,0 +1,5 @@
+# Build directory
+.build
+
+# Binary file
+xsq-convert-parallel
