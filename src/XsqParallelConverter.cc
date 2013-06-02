@@ -8,6 +8,7 @@ auto XsqParallelConverter::convert(const std::string& input_file, const std::str
 {
 	Xsq::XsqFile f(input_file);
 
+	// Get libraries to extract
 	const auto& libraries = prefixes_wanted ? 
 		f.get_libraries_by_prefix(*prefixes_wanted): f.get_libraries();
 
@@ -17,6 +18,7 @@ auto XsqParallelConverter::convert(const std::string& input_file, const std::str
 		std::exit(-1);
 	}
 
+	// Ajust the number of processes to launch if necessary
 	if (nb_processes > libraries.size())
 	{
 		nb_processes = libraries.size();
@@ -24,6 +26,7 @@ auto XsqParallelConverter::convert(const std::string& input_file, const std::str
 			"warning: number of processes changed to " << nb_processes << "." << std::endl;
 	}
 
+	// Build command lines used to launch each xsq-convert process
 	const auto& command_lines = 
 		build_command_lines(libraries, input_file, output_dir, nb_processes);
 
@@ -34,8 +37,10 @@ auto XsqParallelConverter::convert(const std::string& input_file, const std::str
 
 auto XsqParallelConverter::build_command_lines(const std::vector<std::string>& libraries, const std::string& input_file, const std::string& output_dir, unsigned nb_processes) -> CommandLines
 {
+	// Parameters shared by each process
 	CommandLines command_lines(nb_processes, {"xsq-convert", "-i", input_file.c_str(), "-o", output_dir.c_str(), "--extract-only"});
 		
+	// Assign libraries to each xsq-convert process
 	unsigned nb_libs_per_process = libraries.size() / nb_processes;
 	auto lib = libraries.begin();
 		
@@ -57,6 +62,7 @@ auto XsqParallelConverter::build_command_lines(const std::vector<std::string>& l
 	}
 		
 
+	// End of each command line
 	for(auto& command_line: command_lines)
 		command_line.push_back(nullptr);
 
