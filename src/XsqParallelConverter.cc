@@ -4,7 +4,7 @@
 
 #include "XsqParallelConverter.hh"
 
-auto XsqParallelConverter::convert(const std::string& input_file, const std::string& output_dir, unsigned nb_processes, const boost::optional<std::vector<std::string>>& prefixes_wanted) -> void
+void XsqParallelConverter::convert(const std::string& input_file, const std::string& output_dir, unsigned nb_processes, const boost::optional<std::vector<std::string>>& prefixes_wanted)
 {
 	Xsq::XsqFile f(input_file);
 
@@ -35,7 +35,7 @@ auto XsqParallelConverter::convert(const std::string& input_file, const std::str
 }
 
 
-auto XsqParallelConverter::build_command_lines(const std::vector<std::string>& libraries, const std::string& input_file, const std::string& output_dir, unsigned nb_processes) -> CommandLines
+XsqParallelConverter::CommandLines XsqParallelConverter::build_command_lines(const std::vector<std::string>& libraries, const std::string& input_file, const std::string& output_dir, unsigned nb_processes)
 {
 	// Parameters shared by each process
 	CommandLines command_lines(nb_processes, {"xsq-convert", "-i", input_file.c_str(), "-o", output_dir.c_str(), "--extract-only"});
@@ -69,7 +69,7 @@ auto XsqParallelConverter::build_command_lines(const std::vector<std::string>& l
 	return command_lines;
 }
 
-auto XsqParallelConverter::launch_sub_processes(const CommandLines& command_lines) -> void
+void XsqParallelConverter::launch_sub_processes(const CommandLines& command_lines)
 {
 	for(const auto& command_line: command_lines)
 	{
@@ -86,7 +86,7 @@ auto XsqParallelConverter::launch_sub_processes(const CommandLines& command_line
 	}
 }
 
-auto XsqParallelConverter::wait_sub_processes() -> void
+void XsqParallelConverter::wait_sub_processes()
 {
 	while(wait(nullptr) != -1)
 		;

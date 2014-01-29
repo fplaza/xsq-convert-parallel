@@ -32,13 +32,13 @@ namespace Xsq
 			m_file.close();
 		};
 
-		auto get_path() -> fs::path const
+		fs::path const get_path()
 		{
 			return m_path;
 		}
 
-		auto get_libraries() const -> std::vector<std::string>;
-		auto get_libraries_by_prefix(const std::vector<std::string>&) const -> std::vector<std::string>;
+		std::vector<std::string> get_libraries() const;
+		std::vector<std::string> get_libraries_by_prefix(const std::vector<std::string>&) const;
 	};
 }
 

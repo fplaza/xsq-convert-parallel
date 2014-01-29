@@ -14,7 +14,7 @@ namespace po = boost::program_options;
 /**
  * Function which checks and retrieves command line parameters.
  **/
-auto get_parameters(int argc, char *argv[]) -> Parameters
+Parameters get_parameters(int argc, char *argv[])
 {
 	Parameters pars;
 

@@ -5,7 +5,7 @@ using namespace Xsq;
 * Method which returns a list of all the libraries in this XsqFile
 * except those which are unclassified or unassigned.
 */
-auto XsqFile::get_libraries() const -> std::vector<std::string> 
+std::vector<std::string>  XsqFile::get_libraries() const
 {
 	std::vector<std::string> libraries;
 
@@ -25,7 +25,7 @@ auto XsqFile::get_libraries() const -> std::vector<std::string>
 * Method which returns a list of all the libraries in this XsqFile
 * whose name is prefixed by one of the elements in the prefixes_wanted list.
 */
-auto XsqFile::get_libraries_by_prefix(const std::vector<std::string>& prefixes_wanted) const -> std::vector<std::string>
+std::vector<std::string> XsqFile::get_libraries_by_prefix(const std::vector<std::string>& prefixes_wanted) const
 {
 	std::vector<std::string> libraries;
 

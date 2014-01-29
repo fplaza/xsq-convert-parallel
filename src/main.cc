@@ -5,7 +5,7 @@
 #include "XsqParallelConverter.hh"
 #include "Parameters.hh"
 
-auto main(int argc , char *argv[]) -> int
+int main(int argc , char *argv[])
 {
 	try 
 	{	

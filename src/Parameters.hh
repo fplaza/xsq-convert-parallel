@@ -17,6 +17,6 @@ struct Parameters
 	boost::optional<std::vector<std::string>> prefixes_wanted;
 };
 
-auto get_parameters(int argc, char *argv[]) -> Parameters;
+Parameters get_parameters(int argc, char *argv[]);
 
 #endif // PARAMETERS_HH
