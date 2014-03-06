@@ -1,4 +1,5 @@
 #include "XsqFile.hh"
+#include <boost/assign/list_of.hpp>
 using namespace Xsq;
 
 /**
@@ -11,7 +12,7 @@ std::vector<std::string>  XsqFile::get_libraries() const
 
 	for (unsigned library_id = 0; library_id < m_file.getNumObjs(); library_id++)
 	{
-		const auto& library_name = m_file.getObjnameByIdx(library_id);
+		const std::string& library_name = m_file.getObjnameByIdx(library_id);
 
 		if (std::find_if(s_reserved_names.begin(), s_reserved_names.end(), StringPrefixComparator(library_name)) == s_reserved_names.end())
 			libraries.push_back(library_name);
@@ -31,7 +32,7 @@ std::vector<std::string> XsqFile::get_libraries_by_prefix(const std::vector<std:
 
 	for (unsigned library_id = 0; library_id < m_file.getNumObjs(); library_id++)
 	{
-		const auto& library_name = m_file.getObjnameByIdx(library_id);
+		const std::string& library_name = m_file.getObjnameByIdx(library_id);
 
 		if (std::find_if(prefixes_wanted.begin(), prefixes_wanted.end(), StringPrefixComparator(library_name)) != prefixes_wanted.end())
 		{
@@ -43,4 +44,4 @@ std::vector<std::string> XsqFile::get_libraries_by_prefix(const std::vector<std:
 }
 
 const std::vector<std::string> XsqFile::s_reserved_names = 
-	{"RunMetadata", "TagDetails", "Indexing", "Unassigned", "Unclassified"};
+	boost::assign::list_of("RunMetadata")("TagDetails")("Indexing")("Unassigned")("Unclassified");

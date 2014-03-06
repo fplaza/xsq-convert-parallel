@@ -14,7 +14,7 @@ struct Parameters
 	std::string input_file;
 	std::string output_dir;
 	unsigned nb_processes;
-	boost::optional<std::vector<std::string>> prefixes_wanted;
+	boost::optional<std::vector<std::string> > prefixes_wanted;
 };
 
 Parameters get_parameters(int argc, char *argv[]);

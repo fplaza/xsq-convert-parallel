@@ -15,7 +15,7 @@
 class XsqParallelConverter
 {
 public:
-	void convert(const std::string&, const std::string&, unsigned, const boost::optional<std::vector<std::string>>&);
+	void convert(const std::string&, const std::string&, unsigned, const boost::optional<std::vector<std::string> >&);
 
 private:
 	typedef const char* Arg;
