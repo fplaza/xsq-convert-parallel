@@ -25,7 +25,7 @@ Parameters get_parameters(int argc, char *argv[])
 	opts_desc.add_options()
 		("help,h", "print this help message")
 		("input-file,i", po::value<std::string>(&pars.input_file)->required(), "xsq file to convert")
-		("output-dir,o", po::value<std::string>(&pars.output_dir)->default_value("."), "directory in which cfasta and qval files are saved")
+		("output-dir,o", po::value<std::string>(&pars.output_dir)->default_value("."), "directory in which csfasta and qval files are saved")
 		("extract-only", po::value<std::vector<std::string> >()->multitoken(), "extract only libraries whose name is prefixed by one of the args. (case sensitive)")
 		("processes,p", po::value<unsigned>(&pars.nb_processes)->required(), "number of xsq-convert processes to launch in parallel") 
 		;
